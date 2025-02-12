@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
   shutdown: graceful
 
 spring:
@@ -7,3 +7,25 @@ spring:
     name: application
   main:
     banner-mode: off
+  threads:
+    virtual:
+      enabled: true
+  data:
+    redis:
+      repositories:
+        enabled: false
+      host: localhost
+      port: 6379
+      ssl:
+        enabled: false
+      password: P@ssword
+      timeout: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always

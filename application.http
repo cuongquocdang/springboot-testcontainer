@@ -1,0 +1,17 @@
+### Check Service and Dependencies
+GET {{apiHost}}/actuator/health
+Accept: application/json
+
+> {%
+    client.test("Service is healthy", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.status == "UP", "Service is unhealthy");
+    });
+
+    client.test("Redis is healthy", function () {
+        client.assert(response.body.components.redis.status == "UP", "Redis is unhealthy");
+    });
+%}
+
+###
+GET http://localhost:8082/v1/tests
