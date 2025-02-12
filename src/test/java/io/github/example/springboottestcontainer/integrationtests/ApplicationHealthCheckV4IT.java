@@ -1,6 +1,6 @@
 package io.github.example.springboottestcontainer.integrationtests;
 
-import io.github.example.springboottestcontainer.base.IntegrationTest;
+import io.github.example.springboottestcontainer.base.BaseIntegrationTest;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@IntegrationTest
-class GetTestRestEndpointIT {
+class ApplicationHealthCheckV4IT extends BaseIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -21,10 +20,11 @@ class GetTestRestEndpointIT {
     @SneakyThrows
     void should_ReturnUP_When_ApplicationIsUpAndDependenciesAreUp() {
 
-        var result = mockMvc.perform(get("/v1/tests/test")
+        var result = mockMvc.perform(get("/actuator/health")
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk())
-                .andExpect(jsonPath("$").value("test"));
+                .andExpect(jsonPath("$.status").value("UP"))
+                .andExpect(jsonPath("$.components.redis.status").value("UP"));
     }
 }

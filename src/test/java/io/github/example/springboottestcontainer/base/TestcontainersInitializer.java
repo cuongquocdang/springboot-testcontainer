@@ -1,4 +1,4 @@
-package io.github.example.springboottestcontainer.testcontainers;
+package io.github.example.springboottestcontainer.base;
 
 import com.redis.testcontainers.RedisContainer;
 import org.springframework.boot.test.util.TestPropertyValues;
