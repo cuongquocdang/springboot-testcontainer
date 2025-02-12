@@ -1,6 +1,6 @@
 package io.github.example.springboottestcontainer.integrationtests;
 
-import io.github.example.springboottestcontainer.base.IntegrationTest;
+import io.github.example.springboottestcontainer.base.BaseIntegrationTest;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@IntegrationTest
-class GetTestRestEndpointIT {
+class GetTestRestEndpointV4IT extends BaseIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
