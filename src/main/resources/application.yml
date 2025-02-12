@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: application
+  main:
+    banner-mode: off
